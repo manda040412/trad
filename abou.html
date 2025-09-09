@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Kami - PT. Timur Raya Anugerah Damai</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            overflow-x: hidden;
+            background: #000;
+        }
+
+        .floating-icons {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .floating-icon {
+            position: absolute;
+            color: rgba(59, 130, 246, 0.1);
+            font-size: 2rem;
+            animation: float 20s infinite linear;
+        }
+
+        .floating-icon:nth-child(1) {
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-icon:nth-child(2) {
+            left: 20%;
+            animation-delay: 2s;
+        }
+
+        .floating-icon:nth-child(3) {
+            left: 30%;
+            animation-delay: 4s;
+        }
+
+        .floating-icon:nth-child(4) {
+            left: 40%;
+            animation-delay: 6s;
+        }
+
+        .floating-icon:nth-child(5) {
+            left: 50%;
+            animation-delay: 8s;
+        }
+
+        .floating-icon:nth-child(6) {
+            left: 60%;
+            animation-delay: 10s;
+        }
+
+        .floating-icon:nth-child(7) {
+            left: 70%;
+            animation-delay: 12s;
+        }
+
+        .floating-icon:nth-child(8) {
+            left: 80%;
+            animation-delay: 14s;
+        }
+
+        .floating-icon:nth-child(9) {
+            left: 90%;
+            animation-delay: 16s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+            }
+
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 58, 138, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+            padding: 0.5rem 0;
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .navbar.scrolled {
+            padding: 0.4rem 0;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.98) 0%, rgba(30, 58, 138, 0.98) 100%);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            height: 35px;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 20px rgba(255, 107, 53, 0.5));
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff6b35, #f59e0b);
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+
+        .nav-link:hover::before {
+            left: 0;
+        }
+
+        .nav-link:hover {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+        }
+
+        .contact-btn {
+            background: linear-gradient(45deg, #ff6b35, #f59e0b);
+            color: white !important;
+            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        .contact-btn::before {
+            background: linear-gradient(45deg, #f59e0b, #ff6b35);
+        }
+
+        .language-switcher {
+            display: flex;
+            gap: 0.3rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 0.3rem;
+        }
+
+        .lang-btn {
+            background: transparent;
+            color: rgba(255, 255, 255, 0.7);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(45deg, #ff6b35, #f59e0b);
+            color: white;
+            box-shadow: 0 2px 10px rgba(255, 107, 53, 0.3);
+        }
+
+        .hero {
+            height: 60vh;
+            min-height: 400px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            overflow: hidden;
+            margin-top: 70px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, rgba(255, 107, 53, 0.2), rgba(245, 158, 11, 0.2));
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #fff 30%, #ff6b35 70%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .company-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            position: relative;
+        }
+
+        .company-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .company-text {
+            background: white;
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .company-text::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(45deg, #ff6b35, #f59e0b);
+        }
+
+        .company-visual {
+            position: relative;
+        }
+
+        .company-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .mini-stat {
+            background: linear-gradient(135deg, #ff6b35, #f59e0b);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .mini-stat-number {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+
+        .mini-stat-text {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .vision-mission-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            color: white;
+            position: relative;
+        }
+
+        .vision-mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .vision-card,
+        .mission-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vision-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(45deg, #ff6b35, #f59e0b);
+        }
+
+        .mission-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(45deg, #3b82f6, #1e40af);
+        }
+
+        .vm-icon {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .vision-card .vm-icon {
+            background: linear-gradient(45deg, #ff6b35, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .mission-card .vm-icon {
+            background: linear-gradient(45deg, #3b82f6, #1e40af);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .vm-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .vm-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+
+        .services-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            position: relative;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 107, 53, 0.1);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(45deg, #ff6b35, #f59e0b);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #ff6b35, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .service-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1e3a8a;
+        }
+
+        .service-description {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .distribution-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            color: white;
+            position: relative;
+        }
+
+        .map-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 3rem auto;
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        #map {
+            height: 500px;
+            width: 100%;
+            border-radius: 20px;
+        }
+
+        .leaflet-popup-content-wrapper {
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .certificates-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            position: relative;
+        }
+
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .certificate-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 107, 53, 0.1);
+        }
+
+        .certificate-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(45deg, #ff6b35, #f59e0b);
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+            border-color: rgba(255, 107, 53, 0.3);
+        }
+
+        .certificate-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #ff6b35, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .certificate-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+
+        .certificate-year {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #1e3a8a, #ff6b35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #64748b;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-subtitle-white {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .company-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .vision-mission-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+
+            .certificates-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #ff6b35, #f59e0b);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #f59e0b, #ff6b35);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="floating-icons">
+        <i class="fas fa-car floating-icon"></i>
+        <i class="fas fa-truck floating-icon"></i>
+        <i class="fas fa-motorcycle floating-icon"></i>
+        <i class="fas fa-cog floating-icon"></i>
+        <i class="fas fa-wrench floating-icon"></i>
+        <i class="fas fa-oil-can floating-icon"></i>
+        <i class="fas fa-battery-half floating-icon"></i>
+        <i class="fas fa-tachometer-alt floating-icon"></i>
+        <i class="fas fa-tools floating-icon"></i>
+    </div>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo-container">
+                <img src="assets/tra-logo.png" alt="TRA Logo" class="logo">
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link" data-en="🏠 Home" data-id="🏠 Beranda"><i class="fas fa-home"></i>
+                        Beranda</a></li>
+                <li><a href="#about" class="nav-link" data-en="🏢 About Us" data-id="🏢 Tentang Kami"><i
+                            class="fas fa-building"></i> Tentang Kami</a></li>
+                <li><a href="#products" class="nav-link" data-en="🔧 Products" data-id="🔧 Produk"><i
+                            class="fas fa-cogs"></i> Produk</a></li>
+                <li><a href="#articles" class="nav-link" data-en="📰 Articles" data-id="📰 Artikel"><i
+                            class="fas fa-newspaper"></i> Artikel</a></li>
+                <li><a href="#catalog" class="nav-link" data-en="📋 Catalog" data-id="📋 Katalog"><i
+                            class="fas fa-book"></i> Katalog</a></li>
+                <li><a href="#contact" class="nav-link contact-btn" data-en="📞 Contact Us" data-id="📞 Hubungi Kami"><i
+                            class="fas fa-phone"></i> Hubungi Kami</a></li>
+            </ul>
+
+            <div class="language-switcher">
+                <button class="lang-btn active" onclick="switchLanguage('id')">🇮🇩</button>
+                <button class="lang-btn" onclick="switchLanguage('en')">🇺🇸</button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge" data-en="🏢 About Our Company" data-id="🏢 Tentang Perusahaan Kami">🏢 Tentang
+                Perusahaan Kami</div>
+            <h1 class="hero-title" data-en="Excellence in Automotive Solutions"
+                data-id="Keunggulan dalam Solusi Otomotif">Keunggulan dalam<br>Solusi Otomotif</h1>
+            <p class="hero-subtitle"
+                data-en="Discover our journey of innovation, quality, and trusted partnerships in the automotive industry since 1970"
+                data-id="Temukan perjalanan inovasi, kualitas, dan kemitraan terpercaya kami di industri otomotif sejak 1970">
+                Temukan perjalanan inovasi, kualitas, dan kemitraan terpercaya kami di industri otomotif sejak 1970
+            </p>
+        </div>
+    </section>
+
+    <section class="company-section">
+        <div class="container">
+            <div class="company-content">
+                <div class="company-text">
+                    <h2 style="color: #1e3a8a; font-size: 2.5rem; font-weight: 900; margin-bottom: 2rem;"
+                        data-en="Who We Are" data-id="Siapa Kami">Siapa Kami</h2>
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;"
+                        data-en="PT. Timur Raya Anugerah Damai is an importer and distributor of automotive spare parts generally from Japan and other countries. We prioritize trust, quality and delivery speed in providing products and services to our customers."
+                        data-id="PT. Timur Raya Anugerah Damai merupakan importir dan distributor suku cadang otomotif umumnya dari Jepang dan negara lainnya. Kami mengutamakan kepercayaan, kualitas dan kecepatan pengiriman dalam menyediakan produk dan pelayanan ke para pelanggan kami.">
+                        PT. Timur Raya Anugerah Damai merupakan importir dan distributor suku cadang otomotif umumnya
+                        dari Jepang dan negara lainnya. Kami mengutamakan kepercayaan, kualitas dan kecepatan pengiriman
+                        dalam menyediakan produk dan pelayanan ke para pelanggan kami.</p>
+
+                    <p style="font-size: 1.1rem; line-height: 1.8;"
+                        data-en="By following the dynamic changes in the business world, we implement modern warehouse facilities and operational systems with the aim of providing better and more efficient services to our customers. We also have an experienced and dedicated team specifically to handle automotive spare parts. In addition to providing quality products and good service, ensuring trust in business is also our top priority."
+                        data-id="Dengan mengikuti perubahan yang dinamis di dalam dunia bisnis, kami mengimplementasikan fasilitas gudang dan sistem operasional yang modern dengan tujuan untuk memberikan pelayanan yang lebih baik dan efisien kepada pelanggan kami. Kami juga memiliki tim yang berpengalaman dan berdedikasi khusus untuk menangani suku cadang otomotif. Selain menyediakan produk berkualitas dan pelayanan yang baik, menjamin kepercayaan dalam berbisnis juga merupakan prioritas utama kami.">
+                        Dengan mengikuti perubahan yang dinamis di dalam dunia bisnis, kami mengimplementasikan
+                        fasilitas gudang dan sistem operasional yang modern dengan tujuan untuk memberikan pelayanan
+                        yang lebih baik dan efisien kepada pelanggan kami. Kami juga memiliki tim yang berpengalaman
+                        dan berdedikasi khusus untuk menangani suku cadang otomotif. Selain menyediakan produk
+                        berkualitas dan pelayanan yang baik, menjamin kepercayaan dalam berbisnis juga merupakan
+                        prioritas utama kami.</p>
+                </div>
+
+                <div class="company-visual">
+                    <div class="company-stats">
+                        <div class="mini-stat">
+                            <div class="mini-stat-number">50+</div>
+                            <div class="mini-stat-text" data-en="Years Experience" data-id="Tahun Pengalaman">Tahun
+                                Pengalaman</div>
+                        </div>
+                        <div class="mini-stat">
+                            <div class="mini-stat-number">5000+</div>
+                            <div class="mini-stat-text" data-en="Products" data-id="Produk">Produk</div>
+                        </div>
+                        <div class="mini-stat">
+                            <div class="mini-stat-number">1600+</div>
+                            <div class="mini-stat-text" data-en="Customers" data-id="Pelanggan">Pelanggan</div>
+                        </div>
+                        <div class="mini-stat">
+                            <div class="mini-stat-number">ISO</div>
+                            <div class="mini-stat-text" data-en="9001:2015" data-id="9001:2015">9001:2015</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="vision-mission-section">
+        <div class="container">
+            <h2 class="section-title" data-en="Vision & Mission" data-id="Visi & Misi">Visi & Misi</h2>
+            <p class="section-subtitle section-subtitle-white"
+                data-en="Our guiding principles that drive us forward in delivering excellence"
+                data-id="Prinsip-prinsip panduan yang mendorong kami maju dalam memberikan keunggulan">Prinsip-prinsip
+                panduan yang mendorong kami maju dalam memberikan keunggulan</p>
+
+            <div class="vision-mission-grid">
+                <div class="vision-card">
+                    <div class="vm-icon"><i class="fas fa-eye"></i></div>
+                    <h3 class="vm-title" data-en="Our Vision" data-id="Visi Kami">Visi Kami</h3>
+                    <p class="vm-text"
+                        data-en="To become a leading distributor in automotive spare parts known for guaranteed product quality and easily accessible by customers throughout Indonesia."
+                        data-id="Menjadi distributor terdepan dalam suku cadang otomotif yang dikenal dalam kualitas produk yang terjamin dan mudah diakses oleh pelanggan di seluruh Indonesia.">
+                        Menjadi distributor terdepan dalam suku cadang otomotif yang dikenal dalam kualitas produk yang
+                        terjamin dan mudah diakses oleh pelanggan di seluruh Indonesia.</p>
+                </div>
+                <div class="mission-card">
+                    <div class="vm-icon"><i class="fas fa-rocket"></i></div>
+                    <h3 class="vm-title" data-en="Our Mission" data-id="Misi Kami">Misi Kami</h3>
+                    <p class="vm-text"
+                        data-en="Implementing innovation and optimization ideas to develop ourselves in providing the best service to customers, product quality and compliance with regulations."
+                        data-id="Mengimplementasi ide inovasi dan optimisasi untuk mengembangkan diri kita sendiri dalam memberikan pelayanan terbaik kepada pelanggan, kualitas produk dan ketaatan terhadap peraturan.">
+                        Mengimplementasi ide inovasi dan optimisasi untuk mengembangkan diri kita sendiri dalam
+                        memberikan pelayanan terbaik kepada pelanggan, kualitas produk dan ketaatan terhadap peraturan.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-section">
+        <div class="container">
+            <h2 class="section-title" data-en="Our Services" data-id="Layanan Kami">Layanan Kami</h2>
+            <p class="section-subtitle" data-en="Comprehensive automotive solutions designed to meet your every need"
+                data-id="Solusi otomotif komprehensif yang dirancang untuk memenuhi setiap kebutuhan Anda">Solusi
+                otomotif komprehensif yang dirancang untuk memenuhi setiap kebutuhan Anda</p>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-headset"></i></div>
+                    <h3 class="service-title" data-en="SUPPORT" data-id="SUPPORT">SUPPORT</h3>
+                    <p class="service-description"
+                        data-en="Chat service to answer your questions and tips about our products"
+                        data-id="Layanan chat untuk menjawab pertanyaan Anda dan tips seputar produk kami">Layanan chat
+                        untuk menjawab pertanyaan Anda dan tips seputar produk kami</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-cogs"></i></div>
+                    <h3 class="service-title" data-en="PRODUCT KNOW-HOW" data-id="KNOW-HOW PRODUK">KNOW-HOW PRODUK</h3>
+                    <p class="service-description"
+                        data-en="As an authorized distributor, we will ensure products match your car specifications before purchase"
+                        data-id="Sebagai distributor resmi, kami akan memastikan produk sesuai dengan spesifikasi mobil Anda sebelum membeli">
+                        Sebagai distributor resmi, kami akan memastikan produk sesuai dengan spesifikasi mobil Anda
+                        sebelum membeli</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-certificate"></i></div>
+                    <h3 class="service-title" data-en="ORIGINAL PRODUCT GUARANTEE" data-id="GARANSI PRODUK ORIGINAL">
+                        GARANSI PRODUK ORIGINAL</h3>
+                    <p class="service-description"
+                        data-en="As an authorized distributor, all our spare parts are 100% original to guarantee your shopping comfort with us"
+                        data-id="Sebagai distributor resmi, semua sparepart kami adalah 100% original untuk menjamin kenyamanan Anda berbelanja dengan kami">
+                        Sebagai distributor resmi, semua sparepart kami adalah 100% original untuk menjamin kenyamanan
+                        Anda berbelanja dengan kami</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-store"></i></div>
+                    <h3 class="service-title" data-en="PAY AND PICKUP IN STORE"
+                        data-id="BAYAR DAN AMBIL PRODUK DI TOKO">BAYAR DAN AMBIL PRODUK DI TOKO</h3>
+                    <p class="service-description"
+                        data-en="Convenient payment and pickup options available at our physical stores"
+                        data-id="Opsi pembayaran dan pengambilan yang nyaman tersedia di toko fisik kami">Opsi
+                        pembayaran dan pengambilan yang nyaman tersedia di toko fisik kami</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-shipping-fast"></i></div>
+                    <h3 class="service-title" data-en="ALL COURIERS OF YOUR CHOICE"
+                        data-id="SEMUA KURIR SESUAI PILIHAN ANDA">SEMUA KURIR SESUAI PILIHAN ANDA</h3>
+                    <p class="service-description"
+                        data-en="Flexible delivery options with all major courier services to suit your preferences"
+                        data-id="Opsi pengiriman fleksibel dengan semua layanan kurir utama sesuai preferensi Anda">
+                        Opsi pengiriman fleksibel dengan semua layanan kurir utama sesuai preferensi Anda</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="distribution-section">
+        <div class="container">
+            <h2 class="section-title" data-en="Distribution Network" data-id="Jaringan Distribusi">Jaringan Distribusi
+            </h2>
+            <p class="section-subtitle section-subtitle-white"
+                data-en="Our extensive distribution network covers major cities across Indonesia"
+                data-id="Jaringan distribusi ekstensif kami mencakup kota-kota besar di seluruh Indonesia">Jaringan
+                distribusi ekstensif kami mencakup kota-kota besar di seluruh Indonesia</p>
+            <div id="map" class="map-container"></div>
+        </div>
+    </section>
+
+    <section class="certificates-section">
+        <div class="container">
+            <h2 class="section-title" data-en="Certificates & Accreditations" data-id="Sertifikat & Akreditasi">
+                Sertifikat & Akreditasi</h2>
+            <p class="section-subtitle"
+                data-en="Our commitment to quality and excellence recognized through various certifications"
+                data-id="Komitmen kami terhadap kualitas dan keunggulan diakui melalui berbagai sertifikasi">Komitmen
+                kami terhadap kualitas dan keunggulan diakui melalui berbagai sertifikasi</p>
+
+            <div class="certificates-grid">
+                <div class="certificate-card">
+                    <div class="certificate-icon"><i class="fas fa-award"></i></div>
+                    <h3 class="certificate-title" data-en="ISO 9001:2015" data-id="ISO 9001:2015">ISO 9001:2015</h3>
+                    <p class="certificate-year" data-en="Quality Management System" data-id="Sistem Manajemen Mutu">
+                        Sistem Manajemen Mutu</p>
+                </div>
+                <div class="certificate-card">
+                    <div class="certificate-icon"><i class="fas fa-certificate"></i></div>
+                    <h3 class="certificate-title" data-en="Authorized Distributor" data-id="Distributor Resmi">
+                        Distributor Resmi</h3>
+                    <p class="certificate-year" data-en="Japanese Automotive Parts"
+                        data-id="Suku Cadang Otomotif Jepang">Suku Cadang Otomotif Jepang</p>
+                </div>
+                <div class="certificate-card">
+                    <div class="certificate-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3 class="certificate-title" data-en="Product Safety" data-id="Keamanan Produk">Keamanan Produk
+                    </h3>
+                    <p class="certificate-year" data-en="Safety Standards Compliance"
+                        data-id="Kepatuhan Standar Keamanan">Kepatuhan Standar Keamanan</p>
+                </div>
+                <div class="certificate-card">
+                    <div class="certificate-icon"><i class="fas fa-handshake"></i></div>
+                    <h3 class="certificate-title" data-en="Business Ethics" data-id="Etika Bisnis">Etika Bisnis</h3>
+                    <p class="certificate-year" data-en="Compliance Certification" data-id="Sertifikasi Kepatuhan">
+                        Sertifikasi Kepatuhan</p>
+                </div>
+                <div class="certificate-card">
+                    <div class="certificate-icon"><i class="fas fa-leaf"></i></div>
+                    <h3 class="certificate-title" data-en="Environmental" data-id="Lingkungan">Lingkungan</h3>
+                    <p class="certificate-year" data-en="Eco-Friendly Operations" data-id="Operasi Ramah Lingkungan">
+                        Operasi Ramah Lingkungan</p>
+                </div>
+                <div class="certificate-card">
+                    <div class="certificate-icon"><i class="fas fa-users"></i></div>
+                    <h3 class="certificate-title" data-en="Customer Service" data-id="Layanan Pelanggan">Layanan
+                        Pelanggan</h3>
+                    <p class="certificate-year" data-en="Excellence Award 2023" data-id="Penghargaan Keunggulan 2023">
+                        Penghargaan Keunggulan 2023</p>
+                </div>
+                <div class="certificate-card">
+                    <div class="certificate-icon"><i class="fas fa-truck"></i></div>
+                    <h3 class="certificate-title" data-en="Logistics Excellence" data-id="Keunggulan Logistik">
+                        Keunggulan Logistik</h3>
+                    <p class="certificate-year" data-en="Supply Chain Certification" data-id="Sertifikasi Rantai Pasok">
+                        Sertifikasi Rantai Pasok</p>
+                </div>
+                <div class="certificate-card">
+                    <div class="certificate-icon"><i class="fas fa-check-circle"></i></div>
+                    <h3 class="certificate-title" data-en="Quality Assurance" data-id="Jaminan Kualitas">Jaminan
+                        Kualitas</h3>
+                    <p class="certificate-year" data-en="Product Testing Standards" data-id="Standar Pengujian Produk">
+                        Standar Pengujian Produk</p>
+                </div>
+                <div class="certificate-card">
+                    <div class="certificate-icon"><i class="fas fa-globe"></i></div>
+                    <h3 class="certificate-title" data-en="International Standards" data-id="Standar Internasional">
+                        Standar Internasional</h3>
+                    <p class="certificate-year" data-en="Global Compliance 2024" data-id="Kepatuhan Global 2024">
+                        Kepatuhan Global 2024</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-2wL7Jvj/2+1NqA8jV5+u+o+g/T7N/aJ5s2M0yN0n/tI=" crossorigin=""></script>
+    <script>
+        // Language switcher
+        let currentLanguage = 'id';
+
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            document.querySelectorAll('[data-en]').forEach(element => {
+                if (lang === 'en') {
+                    element.textContent = element.getAttribute('data-en');
+                } else {
+                    element.textContent = element.getAttribute('data-id');
+                }
+            });
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.service-card, .certificate-card, .company-text').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(50px)';
+                card.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                observer.observe(card);
+            });
+
+            document.querySelectorAll('.service-card').forEach((card, index) => {
+                card.style.transitionDelay = `${index * 0.1}s`;
+            });
+
+            document.querySelectorAll('.certificate-card').forEach((card, index) => {
+                card.style.transitionDelay = `${index * 0.1}s`;
+            });
+
+            // Remove old distribution-points animation logic as we use Leaflet now
+            document.querySelectorAll('.distribution-point').forEach((point) => {
+                point.style.opacity = '1';
+                point.style.transform = 'scale(1)';
+            });
+        });
+
+        // Add mouse parallax effect to hero
+        document.addEventListener('mousemove', function (e) {
+            const hero = document.querySelector('.hero');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+
+            hero.style.background = `linear-gradient(135deg, hsl(${220 + x * 10}, 70%, ${10 + y * 5}%) 0%, hsl(${200 + y * 15}, 60%, ${15 + x * 5}%) 50%, hsl(${220 + x * 10}, 70%, ${10 + y * 5}%) 100%)`;
+        });
+
+        // --- Peta Interaktif Leaflet ---
+        const map = L.map('map').setView([-2.548926, 118.014863], 5); // Mengatur tampilan peta di tengah Indonesia
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        const locations = [
+            // Sumatera
+            {
+                lat: 4.695135,
+                lng: 96.749399,
+                name: 'Aceh'
+            },
+            {
+                lat: 3.595188,
+                lng: 98.672228,
+                name: 'Medan'
+            },
+            {
+                lat: 0.507068,
+                lng: 101.447779,
+                name: 'Pekanbaru'
+            },
+            {
+                lat: -2.991206,
+                lng: 104.756163,
+                name: 'Palembang'
+            },
+            {
+                lat: -1.606259,
+                lng: 103.613346,
+                name: 'Jambi'
+            },
+            {
+                lat: -5.420063,
+                lng: 105.263842,
+                name: 'Lampung'
+            },
+            // Jawa
+            {
+                lat: -6.175392,
+                lng: 106.827153,
+                name: 'Jakarta'
+            },
+            {
+                lat: -6.17511,
+                lng: 106.64375,
+                name: 'Tangerang'
+            },
+            {
+                lat: -6.238171,
+                lng: 106.975765,
+                name: 'Bekasi'
+            },
+            {
+                lat: -6.054593,
+                lng: 106.143739,
+                name: 'Serang'
+            },
+            {
+                lat: -6.22329,
+                lng: 107.13204,
+                name: 'Cikarang'
+            },
+            {
+                lat: -6.917464,
+                lng: 107.619122,
+                name: 'Bandung'
+            },
+            {
+                lat: -6.595038,
+                lng: 106.816631,
+                name: 'Bogor'
+            },
+            {
+                lat: -6.390462,
+                lng: 106.822838,
+                name: 'Depok'
+            },
+            {
+                lat: -6.924844,
+                lng: 106.916824,
+                name: 'Sukabumi'
+            },
+            {
+                lat: -6.71185,
+                lng: 108.555985,
+                name: 'Cirebon'
+            },
+            {
+                lat: -6.887642,
+                lng: 109.673894,
+                name: 'Pekalongan'
+            },
+            {
+                lat: -7.423984,
+                lng: 109.223275,
+                name: 'Purwokerto'
+            },
+            {
+                lat: -6.877042,
+                lng: 109.12351,
+                name: 'Tegal'
+            },
+            {
+                lat: -6.966667,
+                lng: 110.416664,
+                name: 'Semarang'
+            },
+            {
+                lat: -6.804154,
+                lng: 110.849646,
+                name: 'Kudus'
+            },
+            {
+                lat: -7.555998,
+                lng: 110.820261,
+                name: 'Solo'
+            },
+            {
+                lat: -7.79558,
+                lng: 110.36949,
+                name: 'Yogyakarta'
+            },
+            {
+                lat: -7.476483,
+                lng: 110.218524,
+                name: 'Magelang'
+            },
+            {
+                lat: -7.257472,
+                lng: 112.75209,
+                name: 'Surabaya'
+            },
+            {
+                lat: -7.96662,
+                lng: 112.63336,
+                name: 'Malang'
+            },
+            // Kalimantan
+            {
+                lat: -0.0242,
+                lng: 109.3496,
+                name: 'Pontianak'
+            },
+            {
+                lat: -3.316694,
+                lng: 114.590111,
+                name: 'Banjarmasin'
+            },
+            {
+                lat: -1.237927,
+                lng: 116.883769,
+                name: 'Balikpapan'
+            },
+            {
+                lat: -0.49505,
+                lng: 117.14371,
+                name: 'Samarinda'
+            },
+            // Sulawesi
+            {
+                lat: -5.147665,
+                lng: 119.432731,
+                name: 'Makassar'
+            },
+            {
+                lat: 1.47483,
+                lng: 124.842079,
+                name: 'Manado'
+            },
+            {
+                lat: -0.8922,
+                lng: 119.8707,
+                name: 'Palu'
+            },
+            // Papua
+            {
+                lat: -2.53366,
+                lng: 140.71813,
+                name: 'Jayapura'
+            },
+            {
+                lat: -8.49079,
+                lng: 140.40798,
+                name: 'Merauke'
+            }
+        ];
+
+        locations.forEach(location => {
+            const marker = L.marker([location.lat, location.lng]).addTo(map);
+            marker.bindPopup(`<b>${location.name}</b>`).openPopup();
+        });
+    </script>
+</body>
+
+</html>
