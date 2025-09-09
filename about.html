@@ -7,7 +7,7 @@
     <title>Tentang Kami - PT. Timur Raya Anugerah Damai</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <style>
         * {
             margin: 0;
@@ -600,6 +600,137 @@
             color: rgba(255, 255, 255, 0.8);
         }
 
+        /* Enhanced Footer */
+        .logo-section {
+            text-align: left;
+            /* bikin logo rata tengah */
+        }
+
+        .footer-logo {
+            max-height: 100px;
+            /* perkecil ukuran logo */
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+            /* beri jarak ke teks */
+            display: block;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: 5rem 0 2rem;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background:
+                radial-gradient(circle at 20% 0%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 0%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-section {
+            position: relative;
+        }
+
+        .footer-section h3 {
+            color: #ff6b35;
+            margin-bottom: 2rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-section h3::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(45deg, #ff6b35, #f59e0b);
+            border-radius: 2px;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #cbd5e1;
+            margin-bottom: 1rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #ff6b35;
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #ff6b35, #f59e0b);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #f59e0b, #ff6b35);
+            transition: all 0.4s ease;
+        }
+
+        .social-link:hover::before {
+            left: 0;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 2rem;
+            text-align: center;
+            color: #94a3b8;
+            position: relative;
+            z-index: 10;
+        }
+
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
@@ -679,11 +810,11 @@
             </div>
 
             <ul class="nav-menu">
-                <li><a href="#home" class="nav-link" data-en="🏠 Home" data-id="🏠 Beranda"><i class="fas fa-home"></i>
+                <li><a href="index.html" class="nav-link" data-en="🏠 Home" data-id="🏠 Beranda"><i class="fas fa-home"></i>
                         Beranda</a></li>
                 <li><a href="#about" class="nav-link" data-en="🏢 About Us" data-id="🏢 Tentang Kami"><i
                             class="fas fa-building"></i> Tentang Kami</a></li>
-                <li><a href="#products" class="nav-link" data-en="🔧 Products" data-id="🔧 Produk"><i
+                <li><a href="products.html" class="nav-link" data-en="🔧 Products" data-id="🔧 Produk"><i
                             class="fas fa-cogs"></i> Produk</a></li>
                 <li><a href="#articles" class="nav-link" data-en="📰 Articles" data-id="📰 Artikel"><i
                             class="fas fa-newspaper"></i> Artikel</a></li>
@@ -937,6 +1068,60 @@
             </div>
         </div>
     </section>
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section logo-section">
+                    <img src="assets/tra-logo.png" alt="TRA Logo" class="footer-logo">
+                    <h3><i class="fas fa-building"></i> PT. Timur Raya Anugerah Damai</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Jalan Danau Sunter Barat Blok A4 No.3 Sunter Agung</p>
+                    <p><i class="fas fa-city"></i> Jakarta Utara 14350, Indonesia</p>
+                </div>
+
+
+                <div class="footer-section">
+                    <h3><i class="fas fa-phone-alt"></i> <span data-en="Contact Us" data-id="Hubungi Kami">Hubungi
+                            Kami</span></h3>
+                    <p><i class="fas fa-phone"></i> Tel : +6221-2265-5929</p>
+                    <p><i class="fas fa-envelope"></i> timurrayaanugerahdamai@gmail.com</p>
+                    <a href="#"><i class="fas fa-globe"></i> <span data-en="Visit Website"
+                            data-id="Kunjungi Website">Kunjungi Website</span></a>
+                </div>
+
+                <div class="footer-section">
+                    <h3><i class="fas fa-shopping-cart"></i> <span data-en="Product Inquiry"
+                            data-id="Permintaan Produk">Permintaan Produk</span></h3>
+                    <p><i class="fab fa-whatsapp"></i> WhatsApp: +6281-1184-9199</p>
+                    <p><i class="fas fa-envelope"></i> tranugerahsales1@gmail.com</p>
+                    <a href="#"><i class="fas fa-file-download"></i> <span data-en="Download Catalog"
+                            data-id="Unduh Katalog">Unduh Katalog</span></a>
+                </div>
+
+                <div class="footer-section">
+                    <h3><i class="fas fa-store"></i> <span data-en="Retail Partners" data-id="Mitra Retail">Mitra
+                            Retail</span></h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="Tokopedia"><i class="fas fa-shopping-bag"></i></a>
+                        <a href="#" class="social-link" title="Shopee"><i class="fas fa-store"></i></a>
+                        <a href="#" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <p style="margin-top: 1.5rem;"><i class="fab fa-instagram"></i> <span
+                            data-en="Follow us on social media" data-id="Ikuti kami di media sosial">Ikuti kami di media
+                            sosial</span></p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p><i class="fas fa-copyright"></i> <span
+                        data-en="2022 PT. Timur Raya Anugerah Damai. All rights reserved."
+                        data-id="2022 PT. Timur Raya Anugerah Damai. Semua hak cipta dilindungi undang-undang.">2022 PT.
+                        Timur Raya Anugerah Damai. Semua hak cipta dilindungi undang-undang.</span></p>
+            </div>
+        </div>
+    </footer>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-2wL7Jvj/2+1NqA8jV5+u+o+g/T7N/aJ5s2M0yN0n/tI=" crossorigin=""></script>

@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produk - PT. Timur Raya Anugerah Damai</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            overflow-x: hidden;
+            background: #000;
+        }
+
+        .floating-icons {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .floating-icon {
+            position: absolute;
+            color: rgba(59, 130, 246, 0.1);
+            font-size: 2rem;
+            animation: float 20s infinite linear;
+        }
+
+        .floating-icon:nth-child(1) {
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-icon:nth-child(2) {
+            left: 20%;
+            animation-delay: 2s;
+        }
+
+        .floating-icon:nth-child(3) {
+            left: 30%;
+            animation-delay: 4s;
+        }
+
+        .floating-icon:nth-child(4) {
+            left: 40%;
+            animation-delay: 6s;
+        }
+
+        .floating-icon:nth-child(5) {
+            left: 50%;
+            animation-delay: 8s;
+        }
+
+        .floating-icon:nth-child(6) {
+            left: 60%;
+            animation-delay: 10s;
+        }
+
+        .floating-icon:nth-child(7) {
+            left: 70%;
+            animation-delay: 12s;
+        }
+
+        .floating-icon:nth-child(8) {
+            left: 80%;
+            animation-delay: 14s;
+        }
+
+        .floating-icon:nth-child(9) {
+            left: 90%;
+            animation-delay: 16s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+            }
+
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 58, 138, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+            padding: 0.5rem 0;
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .navbar.scrolled {
+            padding: 0.4rem 0;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.98) 0%, rgba(30, 58, 138, 0.98) 100%);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            height: 35px;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 20px rgba(255, 107, 53, 0.5));
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff6b35, #f59e0b);
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+
+        .nav-link:hover::before {
+            left: 0;
+        }
+
+        .nav-link:hover {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+        }
+
+        .contact-btn {
+            background: linear-gradient(45deg, #ff6b35, #f59e0b);
+            color: white !important;
+            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        .contact-btn::before {
+            background: linear-gradient(45deg, #f59e0b, #ff6b35);
+        }
+
+        .language-switcher {
+            display: flex;
+            gap: 0.3rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 0.3rem;
+        }
+
+        .lang-btn {
+            background: transparent;
+            color: rgba(255, 255, 255, 0.7);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(45deg, #ff6b35, #f59e0b);
+            color: white;
+            box-shadow: 0 2px 10px rgba(255, 107, 53, 0.3);
+        }
+
+        .hero {
+            height: 60vh;
+            min-height: 400px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            overflow: hidden;
+            margin-top: 70px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, rgba(255, 107, 53, 0.2), rgba(245, 158, 11, 0.2));
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #fff 30%, #ff6b35 70%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .intro-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            position: relative;
+        }
+
+        .intro-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            background: white;
+            padding: 4rem;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .intro-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(45deg, #ff6b35, #f59e0b);
+        }
+
+        .intro-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #1e3a8a, #ff6b35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .intro-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #64748b;
+        }
+
+        .filters-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            color: white;
+        }
+
+        .filters-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+        }
+
+        .filters-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .filter-label {
+            font-weight: 600;
+            color: #ff6b35;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .filter-select,
+        .search-input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .filter-select:focus,
+        .search-input:focus {
+            outline: none;
+            border-color: #ff6b35;
+            box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+        }
+
+        .filter-select option {
+            background: #1e293b;
+            color: white;
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(45deg, #ff6b35, #f59e0b);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+        }
+
+        .brands-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #1e3a8a, #ff6b35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #64748b;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .brands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .brand-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 107, 53, 0.1);
+            cursor: pointer;
+        }
+
+        .brand-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(45deg, #ff6b35, #f59e0b);
+        }
+
+        .brand-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+            border-color: rgba(255, 107, 53, 0.3);
+        }
+
+        .brand-logo {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #1e3a8a, #ff6b35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+
+        .brand-description {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .brand-products {
+            background: linear-gradient(45deg, rgba(255, 107, 53, 0.1), rgba(245, 158, 11, 0.1));
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .brand-products-title {
+            font-weight: 600;
+            color: #ff6b35;
+            margin-bottom: 0.5rem;
+        }
+
+        .brand-products-list {
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        .contact-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #fff 30%, #ff6b35 70%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .contact-text {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 3rem;
+        }
+
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-method {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-method:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 107, 53, 0.3);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b35, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .contact-method-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-method-text {
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        .contact-link {
+            color: #ff6b35;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: #f59e0b;
+        }
+
+        .marketplace-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .marketplace-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: linear-gradient(45deg, #ff6b35, #f59e0b);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .marketplace-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #f59e0b, #ff6b35);
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+
+        .marketplace-btn:hover::before {
+            left: 0;
+        }
+
+        .marketplace-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            margin: 5% auto;
+            padding: 3rem;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            color: white;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .close {
+            position: absolute;
+            right: 2rem;
+            top: 2rem;
+            color: #ff6b35;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close:hover {
+            color: #f59e0b;
+            transform: scale(1.1);
+        }
+
+        .modal-brand-name {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #ff6b35, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .modal-brand-info {
+            margin-bottom: 2rem;
+        }
+
+        .modal-section-title {
+            color: #ff6b35;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .modal-text {
+            line-height: 1.6;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-products-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .modal-product-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 107, 53, 0.2);
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: 5rem 0 2rem;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background:
+                radial-gradient(circle at 20% 0%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 0%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-section {
+            position: relative;
+        }
+
+        .footer-section h3 {
+            color: #ff6b35;
+            margin-bottom: 2rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-section h3::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(45deg, #ff6b35, #f59e0b);
+            border-radius: 2px;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #cbd5e1;
+            margin-bottom: 1rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #ff6b35;
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #ff6b35, #f59e0b);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #f59e0b, #ff6b35);
+            transition: all 0.4s ease;
+        }
+
+        .social-link:hover::before {
+            left: 0;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 2rem;
+            text-align: center;
+            color: #94a3b8;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo-section {
+            text-align: left;
+        }
+
+        .footer-logo {
+            max-height: 100px;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .intro-content {
+                padding: 2rem;
+            }
+
+            .filters-row {
+                grid-template-columns: 1fr;
+            }
+
+            .brands-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+
+            .marketplace-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #ff6b35, #f59e0b);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #f59e0b, #ff6b35);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="floating-icons">
+        <i class="fas fa-car floating-icon"></i>
+        <i class="fas fa-truck floating-icon"></i>
+        <i class="fas fa-motorcycle floating-icon"></i>
+        <i class="fas fa-cog floating-icon"></i>
+        <i class="fas fa-wrench floating-icon"></i>
+        <i class="fas fa-oil-can floating-icon"></i>
+        <i class="fas fa-battery-half floating-icon"></i>
+        <i class="fas fa-tachometer-alt floating-icon"></i>
+        <i class="fas fa-tools floating-icon"></i>
+    </div>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo-container">
+                <img src="assets/tra-logo.png" alt="TRA Logo" class="logo">
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link" data-en="🏠 Home" data-id="🏠 Beranda"><i class="fas fa-home"></i>
+                        Beranda</a></li>
+                <li><a href="about.html" class="nav-link" data-en="🏢 About Us" data-id="🏢 Tentang Kami"><i
+                                class="fas fa-building"></i> Tentang Kami</a></li>
+                <li><a href="#products" class="nav-link" data-en="🔧 Products" data-id="🔧 Produk"><i
+                                class="fas fa-cogs"></i> Produk</a></li>
+                <li><a href="#articles" class="nav-link" data-en="📰 Articles" data-id="📰 Artikel"><i
+                                class="fas fa-newspaper"></i> Artikel</a></li>
+                <li><a href="#catalog" class="nav-link" data-en="📋 Catalog" data-id="📋 Katalog"><i
+                                class="fas fa-book"></i> Katalog</a></li>
+                <li><a href="#contact" class="nav-link contact-btn" data-en="📞 Contact Us" data-id="📞 Hubungi Kami"><i
+                                class="fas fa-phone"></i> Hubungi Kami</a></li>
+            </ul>
+
+            <div class="language-switcher">
+                <button class="lang-btn active" onclick="switchLanguage('id')">🇮🇩</button>
+                <button class="lang-btn" onclick="switchLanguage('en')">🇺🇸</button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge" data-en="🔧 Our Product Range" data-id="🔧 Rangkaian Produk Kami">🔧 Rangkaian Produk Kami</div>
+            <h1 class="hero-title" data-en="Premium Automotive Parts" data-id="Suku Cadang Otomotif Premium">Suku Cadang Otomotif Premium</h1>
+            <p class="hero-subtitle"
+                data-en="Discover our comprehensive range of carefully selected automotive parts from trusted global brands"
+                data-id="Temukan rangkaian lengkap suku cadang otomotif yang dipilih dengan cermat dari brand global terpercaya">
+                Temukan rangkaian lengkap suku cadang otomotif yang dipilih dengan cermat dari brand global terpercaya
+            </p>
+        </div>
+    </section>
+
+    <section class="intro-section">
+        <div class="container">
+            <div class="intro-content">
+                <h2 class="intro-title" data-en="Trusted Quality, Proven Performance" data-id="Kualitas Terpercaya, Performa Terbukti">Kualitas Terpercaya, Performa Terbukti</h2>
+                <p class="intro-text" 
+                   data-en="Our brands are carefully selected and trusted to keep your car on road, so you can shop with confidence. Our product range includes suspension parts (shock absorber, ball joints, bushing, tie rods, etc.), clutch parts, engine parts (belt, water pumps), brakes, bearings, ignitions, transmission systems and many more."
+                   data-id="Brand kami dipilih dengan cermat dan terpercaya untuk menjaga kendaraan Anda tetap di jalan, sehingga Anda dapat berbelanja dengan percaya diri. Rangkaian produk kami meliputi suku cadang suspensi (shock absorber, ball joints, bushing, tie rods, dll.), suku cadang kopling, suku cadang mesin (belt, water pumps), rem, bearing, sistem pengapian, sistem transmisi dan masih banyak lagi.">
+                    Brand kami dipilih dengan cermat dan terpercaya untuk menjaga kendaraan Anda tetap di jalan, sehingga Anda dapat berbelanja dengan percaya diri. Rangkaian produk kami meliputi suku cadang suspensi (shock absorber, ball joints, bushing, tie rods, dll.), suku cadang kopling, suku cadang mesin (belt, water pumps), rem, bearing, sistem pengapian, sistem transmisi dan masih banyak lagi.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="filters-section">
+        <div class="container">
+            <div class="filters-container">
+                <div class="filters-row">
+                    <div class="filter-group">
+                        <label class="filter-label" data-en="Product Type" data-id="Jenis Produk">Jenis Produk</label>
+                        <select class="filter-select" id="productType">
+                            <option value="" data-en="All Products" data-id="Semua Produk">Semua Produk</option>
+                            <option value="brake-pads" data-en="Brake Pads" data-id="Kampas Rem">Kampas Rem</option>
+                            <option value="tires" data-en="Tires" data-id="Ban">Ban</option>
+                            <option value="suspension" data-en="Suspension Parts" data-id="Suku Cadang Suspensi">Suku Cadang Suspensi</option>
+                            <option value="engine" data-en="Engine Parts" data-id="Suku Cadang Mesin">Suku Cadang Mesin</option>
+                            <option value="clutch" data-en="Clutch Parts" data-id="Suku Cadang Kopling">Suku Cadang Kopling</option>
+                            <option value="transmission" data-en="Transmission" data-id="Transmisi">Transmisi</option>
+                            <option value="ignition" data-en="Ignition System" data-id="Sistem Pengapian">Sistem Pengapian</option>
+                            <option value="bearings" data-en="Bearings" data-id="Bearing">Bearing</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label" data-en="Brand Name" data-id="Nama Brand">Nama Brand</label>
+                        <select class="filter-select" id="brandFilter">
+                            <option value="" data-en="All Brands" data-id="Semua Brand">Semua Brand</option>
+                            <option value="denso">Denso</option>
+                            <option value="ngk">NGK</option>
+                            <option value="kyb">KYB</option>
+                            <option value="aisin">Aisin</option>
+                            <option value="bosch">Bosch</option>
+                            <option value="gates">Gates</option>
+                            <option value="ntn">NTN</option>
+                            <option value="koyo">Koyo</option>
+                            <option value="sachs">Sachs</option>
+                            <option value="valeo">Valeo</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label" data-en="Sort By" data-id="Urutkan Berdasarkan">Urutkan Berdasarkan</label>
+                        <select class="filter-select" id="sortBy">
+                            <option value="name-asc" data-en="Name A-Z" data-id="Nama A-Z">Nama A-Z</option>
+                            <option value="name-desc" data-en="Name Z-A" data-id="Nama Z-A">Nama Z-A</option>
+                            <option value="popular" data-en="Most Popular" data-id="Paling Populer">Paling Populer</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label" data-en="Search Products" data-id="Cari Produk">Cari Produk</label>
+                        <div class="search-container">
+                            <input type="text" class="search-input" id="searchInput" 
+                                   placeholder-en="Search by product name or code..." 
+                                   placeholder-id="Cari berdasarkan nama produk atau kode..."
+                                   placeholder="Cari berdasarkan nama produk atau kode...">
+                            <button class="search-btn" onclick="searchProducts()">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="brands-section" id="products">
+        <div class="container">
+            <h2 class="section-title" data-en="Our Trusted Brands" data-id="Brand Terpercaya Kami">Brand Terpercaya Kami</h2>
+            <p class="section-subtitle" 
+               data-en="Click on any brand card below to learn more about their products and specifications"
+               data-id="Klik pada kartu brand di bawah ini untuk mempelajari lebih lanjut tentang produk dan spesifikasi mereka">
+                Klik pada kartu brand di bawah ini untuk mempelajari lebih lanjut tentang produk dan spesifikasi mereka
+            </p>
+
+            <div class="brands-grid" id="brandsGrid">
+                <div class="brand-card" onclick="openBrandModal('denso')">
+                    <div class="brand-logo"><i class="fas fa-car-battery"></i></div>
+                    <h3 class="brand-name">DENSO</h3>
+                    <p class="brand-description" data-en="Leading Japanese automotive component manufacturer" data-id="Produsen komponen otomotif Jepang terdepan">Produsen komponen otomotif Jepang terdepan</p>
+                    <div class="brand-products">
+                        <div class="brand-products-title" data-en="Available Products:" data-id="Produk Tersedia:">Produk Tersedia:</div>
+                        <div class="brand-products-list" data-en="Spark Plugs, Ignition Coils, Fuel Pumps, Air Filters" data-id="Busi, Koil Pengapian, Pompa Bensin, Filter Udara">Busi, Koil Pengapian, Pompa Bensin, Filter Udara</div>
+                    </div>
+                </div>
+
+                <div class="brand-card" onclick="openBrandModal('ngk')">
+                    <div class="brand-logo"><i class="fas fa-bolt"></i></div>
+                    <h3 class="brand-name">NGK</h3>
+                    <p class="brand-description" data-en="World's leading spark plug and ignition specialist" data-id="Spesialis busi dan sistem pengapian terdepan di dunia">Spesialis busi dan sistem pengapian terdepan di dunia</p>
+                    <div class="brand-products">
+                        <div class="brand-products-title" data-en="Available Products:" data-id="Produk Tersedia:">Produk Tersedia:</div>
+                        <div class="brand-products-list" data-en="Spark Plugs, Ignition Coils, Oxygen Sensors, Wire Sets" data-id="Busi, Koil Pengapian, Sensor Oksigen, Set Kabel">Busi, Koil Pengapian, Sensor Oksigen, Set Kabel</div>
+                    </div>
+                </div>
+
+                <div class="brand-card" onclick="openBrandModal('kyb')">
+                    <div class="brand-logo"><i class="fas fa-compress-arrows-alt"></i></div>
+                    <h3 class="brand-name">KYB</h3>
+                    <p class="brand-description" data-en="Global leader in hydraulic and suspension technology" data-id="Pemimpin global dalam teknologi hidrolik dan suspensi">Pemimpin global dalam teknologi hidrolik dan suspensi</p>
+                    <div class="brand-products">
+                        <div class="brand-products-title" data-en="Available Products:" data-id="Produk Tersedia:">Produk Tersedia:</div>
+                        <div class="brand-products-list" data-en="Shock Absorbers, Struts, Suspension Kits" data-id="Shock Absorber, Strut, Kit Suspensi">Shock Absorber, Strut, Kit Suspensi</div>
+                    </div>
+                </div>
+
+                <div class="brand-card" onclick="openBrandModal('aisin')">
+                    <div class="brand-logo"><i class="fas fa-cogs"></i></div>
+                    <h3 class="brand-name">AISIN</h3>
+                    <p class="brand-description" data-en="Advanced automotive parts and systems manufacturer" data-id="Produsen suku cadang dan sistem otomotif canggih">Produsen suku cadang dan sistem otomotif canggih</p>
+                    <div class="brand-products">
+                        <div class="brand-products-title" data-en="Available Products:" data-id="Produk Tersedia:">Produk Tersedia:</div>
+                        <div class="brand-products-list" data-en="Transmission Parts, Water Pumps, Clutch Kits" data-id="Suku Cadang Transmisi, Pompa Air, Kit Kopling">Suku Cadang Transmisi, Pompa Air, Kit Kopling</div>
+                    </div>
+                </div>
+
+                <div class="brand-card" onclick="openBrandModal('bosch')">
+                    <div class="brand-logo"><i class="fas fa-wrench"></i></div>
+                    <h3 class="brand-name">BOSCH</h3>
+                    <p class="brand-description" data-en="German engineering excellence in automotive technology" data-id="Keunggulan teknik Jerman dalam teknologi otomotif">Keunggulan teknik Jerman dalam teknologi otomotif</p>
+                    <div class="brand-products">
+                        <div class="brand-products-title" data-en="Available Products:" data-id="Produk Tersedia:">Produk Tersedia:</div>
+                        <div class="brand-products-list" data-en="Brake Pads, Filters, Sensors, Wiper Blades" data-id="Kampas Rem, Filter, Sensor, Bilah Wiper">Kampas Rem, Filter, Sensor, Bilah Wiper</div>
+                    </div>
+                </div>
+
+                <div class="brand-card" onclick="openBrandModal('gates')">
+                    <div class="brand-logo"><i class="fas fa-link"></i></div>
+                    <h3 class="brand-name">GATES</h3>
+                    <p class="brand-description" data-en="Leading manufacturer of belts and hoses" data-id="Produsen terdepan untuk belt dan selang">Produsen terdepan untuk belt dan selang</p>
+                    <div class="brand-products">
+                        <div class="brand-products-title" data-en="Available Products:" data-id="Produk Tersedia:">Produk Tersedia:</div>
+                        <div class="brand-products-list" data-en="Timing Belts, Drive Belts, Hoses, Tensioners" data-id="Timing Belt, Drive Belt, Selang, Tensioner">Timing Belt, Drive Belt, Selang, Tensioner</div>
+                    </div>
+                </div>
+
+                <div class="brand-card" onclick="openBrandModal('ntn')">
+                    <div class="brand-logo"><i class="fas fa-circle"></i></div>
+                    <h3 class="brand-name">NTN</h3>
+                    <p class="brand-description" data-en="Premium bearings and driveshaft specialist" data-id="Spesialis bearing dan driveshaft premium">Spesialis bearing dan driveshaft premium</p>
+                    <div class="brand-products">
+                        <div class="brand-products-title" data-en="Available Products:" data-id="Produk Tersedia:">Produk Tersedia:</div>
+                        <div class="brand-products-list" data-en="Wheel Bearings, Hub Bearings, CV Joints" data-id="Bearing Roda, Hub Bearing, CV Joint">Bearing Roda, Hub Bearing, CV Joint</div>
+                    </div>
+                </div>
+
+                <div class="brand-card" onclick="openBrandModal('koyo')">
+                    <div class="brand-logo"><i class="fas fa-gear"></i></div>
+                    <h3 class="brand-name">KOYO</h3>
+                    <p class="brand-description" data-en="High-quality bearings and steering components" data-id="Bearing berkualitas tinggi dan komponen kemudi">Bearing berkualitas tinggi dan komponen kemudi</p>
+                    <div class="brand-products">
+                        <div class="brand-products-title" data-en="Available Products:" data-id="Produk Tersedia:">Produk Tersedia:</div>
+                        <div class="brand-products-list" data-en="Bearings, Steering Parts, Radiators" data-id="Bearing, Suku Cadang Kemudi, Radiator">Bearing, Suku Cadang Kemudi, Radiator</div>
+                    </div>
+                </div>
+
+                <div class="brand-card" onclick="openBrandModal('sachs')">
+                    <div class="brand-logo"><i class="fas fa-car"></i></div>
+                    <h3 class="brand-name">SACHS</h3>
+                    <p class="brand-description" data-en="German clutch and suspension technology" data-id="Teknologi kopling dan suspensi Jerman">Teknologi kopling dan suspensi Jerman</p>
+                    <div class="brand-products">
+                        <div class="brand-products-title" data-en="Available Products:" data-id="Produk Tersedia:">Produk Tersedia:</div>
+                        <div class="brand-products-list" data-en="Clutch Kits, Shock Absorbers, DMF" data-id="Kit Kopling, Shock Absorber, DMF">Kit Kopling, Shock Absorber, DMF</div>
+                    </div>
+                </div>
+
+                <div class="brand-card" onclick="openBrandModal('valeo')">
+                    <div class="brand-logo"><i class="fas fa-lightbulb"></i></div>
+                    <h3 class="brand-name">VALEO</h3>
+                    <p class="brand-description" data-en="French automotive technology innovation" data-id="Inovasi teknologi otomotif Prancis">Inovasi teknologi otomotif Prancis</p>
+                    <div class="brand-products">
+                        <div class="brand-products-title" data-en="Available Products:" data-id="Produk Tersedia:">Produk Tersedia:</div>
+                        <div class="brand-products-list" data-en="Lighting, Wipers, A/C Components, Clutch" data-id="Lampu, Wiper, Komponen A/C, Kopling">Lampu, Wiper, Komponen A/C, Kopling</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="contact-title" data-en="Need More Information?" data-id="Butuh Informasi Lebih Lanjut?">Butuh Informasi Lebih Lanjut?</h2>
+                <p class="contact-text" 
+                   data-en="Our experienced team is ready to help you find the right parts for your vehicle. Contact us through any of the methods below."
+                   data-id="Tim berpengalaman kami siap membantu Anda menemukan suku cadang yang tepat untuk kendaraan Anda. Hubungi kami melalui salah satu metode di bawah ini.">
+                    Tim berpengalaman kami siap membantu Anda menemukan suku cadang yang tepat untuk kendaraan Anda. Hubungi kami melalui salah satu metode di bawah ini.
+                </p>
+
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+                        <h3 class="contact-method-title" data-en="WhatsApp" data-id="WhatsApp">WhatsApp</h3>
+                        <p class="contact-method-text" data-en="Quick response for product inquiries" data-id="Respon cepat untuk pertanyaan produk">Respon cepat untuk pertanyaan produk</p>
+                        <a href="https://wa.me/6281118419199" class="contact-link">+62 811-184-9199</a>
+                    </div>
+
+                    <div class="contact-method">
+                        <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                        <h3 class="contact-method-title" data-en="Phone" data-id="Telepon">Telepon</h3>
+                        <p class="contact-method-text" data-en="Direct consultation with our experts" data-id="Konsultasi langsung dengan ahli kami">Konsultasi langsung dengan ahli kami</p>
+                        <a href="tel:+622122655929" class="contact-link">+62 21-2265-5929</a>
+                    </div>
+                </div>
+
+                <div class="marketplace-links">
+                    <a href="#" class="marketplace-btn" target="_blank">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span data-en="Shop on Tokopedia" data-id="Belanja di Tokopedia">Belanja di Tokopedia</span>
+                    </a>
+                    <a href="#" class="marketplace-btn" target="_blank">
+                        <i class="fas fa-store"></i>
+                        <span data-en="Shop on Shopee" data-id="Belanja di Shopee">Belanja di Shopee</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="brandModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeBrandModal()">&times;</span>
+            <h2 class="modal-brand-name" id="modalBrandName">Brand Name</h2>
+            <div class="modal-brand-info">
+                <div class="modal-section-title" data-en="About This Brand" data-id="Tentang Brand Ini">Tentang Brand Ini</div>
+                <p class="modal-text" id="modalBrandDescription">Brand description will appear here...</p>
+                
+                <div class="modal-section-title" data-en="Available Products at TRA" data-id="Produk Tersedia di TRA">Produk Tersedia di TRA</div>
+                <div class="modal-products-list" id="modalProductsList">
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section logo-section">
+                    <img src="assets/tra-logo.png" alt="TRA Logo" class="footer-logo">
+                    <h3><i class="fas fa-building"></i> PT. Timur Raya Anugerah Damai</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Jalan Danau Sunter Barat Blok A4 No.3 Sunter Agung</p>
+                    <p><i class="fas fa-city"></i> Jakarta Utara 14350, Indonesia</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3><i class="fas fa-phone-alt"></i> <span data-en="Contact Us" data-id="Hubungi Kami">Hubungi Kami</span></h3>
+                    <p><i class="fas fa-phone"></i> Tel : +6221-2265-5929</p>
+                    <p><i class="fas fa-envelope"></i> timurrayaanugerahdamai@gmail.com</p>
+                    <a href="#"><i class="fas fa-globe"></i> <span data-en="Visit Website" data-id="Kunjungi Website">Kunjungi Website</span></a>
+                </div>
+
+                <div class="footer-section">
+                    <h3><i class="fas fa-shopping-cart"></i> <span data-en="Product Inquiry" data-id="Permintaan Produk">Permintaan Produk</span></h3>
+                    <p><i class="fab fa-whatsapp"></i> WhatsApp: +6281-1184-9199</p>
+                    <p><i class="fas fa-envelope"></i> tranugerahsales1@gmail.com</p>
+                    <a href="#"><i class="fas fa-file-download"></i> <span data-en="Download Catalog" data-id="Unduh Katalog">Unduh Katalog</span></a>
+                </div>
+
+                <div class="footer-section">
+                    <h3><i class="fas fa-store"></i> <span data-en="Retail Partners" data-id="Mitra Retail">Mitra Retail</span></h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="Tokopedia"><i class="fas fa-shopping-bag"></i></a>
+                        <a href="#" class="social-link" title="Shopee"><i class="fas fa-store"></i></a>
+                        <a href="#" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <p style="margin-top: 1.5rem;"><i class="fab fa-instagram"></i> <span data-en="Follow us on social media" data-id="Ikuti kami di media sosial">Ikuti kami di media sosial</span></p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p><i class="fas fa-copyright"></i> <span data-en="2022 PT. Timur Raya Anugerah Damai. All rights reserved." data-id="2022 PT. Timur Raya Anugerah Damai. Semua hak cipta dilindungi undang-undang.">2022 PT. Timur Raya Anugerah Damai. Semua hak cipta dilindungi undang-undang.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language switcher
+        let currentLanguage = 'id';
+
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            document.querySelectorAll('[data-en]').forEach(element => {
+                if (lang === 'en') {
+                    element.textContent = element.getAttribute('data-en');
+                } else {
+                    element.textContent = element.getAttribute('data-id');
+                }
+            });
+
+            // Update placeholder text
+            const searchInput = document.getElementById('searchInput');
+            if (lang === 'en') {
+                searchInput.placeholder = searchInput.getAttribute('placeholder-en');
+            } else {
+                searchInput.placeholder = searchInput.getAttribute('placeholder-id');
+            }
+
+            // Update select options
+            document.querySelectorAll('option[data-en]').forEach(option => {
+                if (lang === 'en') {
+                    option.textContent = option.getAttribute('data-en');
+                } else {
+                    option.textContent = option.getAttribute('data-id');
+                }
+            });
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Brand data for modal and search
+        const brandData = {
+            denso: {
+                name: 'DENSO',
+                description: {
+                    id: 'DENSO Corporation adalah pemasok global komponen otomotif dan sistem canggih yang berkantor pusat di Kariya, Jepang. Sebagai salah satu pemasok otomotif terbesar di dunia, DENSO menyediakan teknologi cutting-edge untuk hampir setiap kendaraan di jalan.',
+                    en: 'DENSO Corporation is a global automotive components and advanced systems supplier headquartered in Kariya, Japan. As one of the largest automotive suppliers in the world, DENSO provides cutting-edge technology for nearly every vehicle on the road.'
+                },
+                products: [
+                    { id: 'Busi / Spark Plugs', en: 'Spark Plugs', type: 'ignition' },
+                    { id: 'Koil Pengapian / Ignition Coils', en: 'Ignition Coils', type: 'ignition' },
+                    { id: 'Pompa Bensin / Fuel Pumps', en: 'Fuel Pumps', type: 'engine' },
+                    { id: 'Filter Udara / Air Filters', en: 'Air Filters', type: 'engine' },
+                    { id: 'Sensor Oksigen / O2 Sensors', en: 'Oxygen Sensors', type: 'engine' },
+                    { id: 'Alternator', en: 'Alternators', type: 'engine' }
+                ]
+            },
+            ngk: {
+                name: 'NGK',
+                description: {
+                    id: 'NGK Spark Plugs adalah produsen terkemuka dunia untuk busi dan sensor otomotif. Dengan teknologi inovatif dan kualitas yang telah terbukti, NGK telah menjadi pilihan utama produsen kendaraan dan mekanik profesional di seluruh dunia.',
+                    en: 'NGK Spark Plugs is the world\'s leading manufacturer of spark plugs and automotive sensors. With innovative technology and proven quality, NGK has become the top choice for vehicle manufacturers and professional mechanics worldwide.'
+                },
+                products: [
+                    { id: 'Busi', en: 'Spark Plugs', type: 'ignition' },
+                    { id: 'Koil Pengapian', en: 'Ignition Coils', type: 'ignition' },
+                    { id: 'Sensor Oksigen', en: 'Oxygen Sensors', type: 'engine' },
+                    { id: 'Set Kabel Busi', en: 'Wire Sets', type: 'ignition' }
+                ]
+            },
+            kyb: {
+                name: 'KYB',
+                description: {
+                    id: 'KYB adalah salah satu produsen peredam kejut dan komponen suspensi terbesar di dunia. Dikenal karena kualitasnya yang andal dan performa yang luar biasa, produk KYB digunakan baik sebagai suku cadang asli maupun aftermarket.',
+                    en: 'KYB is one of the world\'s largest manufacturers of shock absorbers and suspension components. Known for its reliable quality and outstanding performance, KYB products are used both as original equipment and aftermarket parts.'
+                },
+                products: [
+                    { id: 'Shock Absorber', en: 'Shock Absorbers', type: 'suspension' },
+                    { id: 'Strut', en: 'Struts', type: 'suspension' },
+                    { id: 'Kit Suspensi', en: 'Suspension Kits', type: 'suspension' }
+                ]
+            },
+            aisin: {
+                name: 'AISIN',
+                description: {
+                    id: 'Aisin Seiki Co., Ltd. adalah produsen komponen otomotif Jepang terkemuka yang merupakan bagian dari Grup Toyota. Aisin dikenal karena produk transmisi, pompa air, dan komponen kopling berkualitas tinggi.',
+                    en: 'Aisin Seiki Co., Ltd. is a leading Japanese automotive components manufacturer and part of the Toyota Group. Aisin is known for its high-quality transmission, water pumps, and clutch components.'
+                },
+                products: [
+                    { id: 'Suku Cadang Transmisi', en: 'Transmission Parts', type: 'transmission' },
+                    { id: 'Pompa Air', en: 'Water Pumps', type: 'engine' },
+                    { id: 'Kit Kopling', en: 'Clutch Kits', type: 'clutch' }
+                ]
+            },
+            bosch: {
+                name: 'BOSCH',
+                description: {
+                    id: 'Robert Bosch GmbH adalah perusahaan multinasional teknik dan teknologi Jerman. Di sektor otomotif, Bosch adalah pemasok terkemuka dunia untuk sistem dan komponen, yang dikenal karena inovasi dan keandalannya.',
+                    en: 'Robert Bosch GmbH is a German multinational engineering and technology company. In the automotive sector, Bosch is a world-leading supplier of systems and components, known for its innovation and reliability.'
+                },
+                products: [
+                    { id: 'Kampas Rem', en: 'Brake Pads', type: 'brake-pads' },
+                    { id: 'Filter', en: 'Filters', type: 'engine' },
+                    { id: 'Sensor', en: 'Sensors', type: 'engine' },
+                    { id: 'Bilah Wiper', en: 'Wiper Blades', type: 'engine' }
+                ]
+            },
+            gates: {
+                name: 'GATES',
+                description: {
+                    id: 'Gates Corporation adalah produsen global terkemuka untuk produk transfer daya dan fluida. Mereka menyediakan berbagai macam belt, selang, dan produk hidrolik untuk aplikasi otomotif dan industri.',
+                    en: 'Gates Corporation is a leading global manufacturer of power transmission and fluid transfer products. They provide a wide range of belts, hoses, and hydraulic products for automotive and industrial applications.'
+                },
+                products: [
+                    { id: 'Timing Belt', en: 'Timing Belts', type: 'engine' },
+                    { id: 'Drive Belt', en: 'Drive Belts', type: 'engine' },
+                    { id: 'Selang', en: 'Hoses', type: 'engine' },
+                    { id: 'Tensioner', en: 'Tensioners', type: 'engine' }
+                ]
+            },
+            ntn: {
+                name: 'NTN',
+                description: {
+                    id: 'NTN Corporation adalah produsen bearing presisi global terkemuka. Mereka menawarkan bearing roda, hub bearing, dan komponen driveshaft berkualitas tinggi yang penting untuk performa dan keselamatan kendaraan.',
+                    en: 'NTN Corporation is a leading global manufacturer of precision bearings. They offer high-quality wheel bearings, hub bearings, and driveshaft components that are essential for vehicle performance and safety.'
+                },
+                products: [
+                    { id: 'Bearing Roda', en: 'Wheel Bearings', type: 'bearings' },
+                    { id: 'Hub Bearing', en: 'Hub Bearings', type: 'bearings' },
+                    { id: 'CV Joint', en: 'CV Joints', type: 'transmission' }
+                ]
+            },
+            koyo: {
+                name: 'KOYO',
+                description: {
+                    id: 'Koyo adalah merek dari JTEKT Corporation, salah satu produsen bearing terkemuka di dunia. Koyo dikenal karena bearing, komponen kemudi, dan sistem transmisi yang inovatif dan andal.',
+                    en: 'Koyo is a brand of JTEKT Corporation, one of the world\'s leading bearing manufacturers. Koyo is known for its innovative and reliable bearings, steering components, and transmission systems.'
+                },
+                products: [
+                    { id: 'Bearing', en: 'Bearings', type: 'bearings' },
+                    { id: 'Suku Cadang Kemudi', en: 'Steering Parts', type: 'suspension' },
+                    { id: 'Radiator', en: 'Radiators', type: 'engine' }
+                ]
+            },
+            sachs: {
+                name: 'SACHS',
+                description: {
+                    id: 'SACHS adalah merek Jerman yang diakui secara global untuk produk kopling dan suspensi. Produk mereka dikembangkan untuk performa dan kenyamanan optimal, dan banyak digunakan di mobil sport maupun kendaraan komersial.',
+                    en: 'SACHS is a globally recognized German brand for clutch and suspension products. Their products are engineered for optimal performance and comfort, and are widely used in both sports cars and commercial vehicles.'
+                },
+                products: [
+                    { id: 'Kit Kopling', en: 'Clutch Kits', type: 'clutch' },
+                    { id: 'Shock Absorber', en: 'Shock Absorbers', type: 'suspension' },
+                    { id: 'DMF (Dual-Mass Flywheel)', en: 'DMF (Dual-Mass Flywheel)', type: 'clutch' }
+                ]
+            },
+            valeo: {
+                name: 'VALEO',
+                description: {
+                    id: 'Valeo adalah pemasok otomotif global yang berkantor pusat di Prancis. Valeo dikenal karena desain dan produksi sistem inovatif untuk mengurangi emisi CO2 dan mengembangkan teknologi untuk kendaraan otonom.',
+                    en: 'Valeo is a global automotive supplier headquartered in France. Valeo is known for designing and producing innovative systems to reduce CO2 emissions and developing technologies for autonomous vehicles.'
+                },
+                products: [
+                    { id: 'Sistem Pencahayaan', en: 'Lighting', type: 'engine' },
+                    { id: 'Wiper', en: 'Wipers', type: 'engine' },
+                    { id: 'Komponen A/C', en: 'A/C Components', type: 'engine' },
+                    { id: 'Kopling', en: 'Clutch', type: 'clutch' }
+                ]
+            }
+        };
+
+        // Modal functions
+        const brandModal = document.getElementById('brandModal');
+        const modalBrandName = document.getElementById('modalBrandName');
+        const modalBrandDescription = document.getElementById('modalBrandDescription');
+        const modalProductsList = document.getElementById('modalProductsList');
+
+        function openBrandModal(brandId) {
+            const brand = brandData[brandId];
+            if (brand) {
+                modalBrandName.textContent = brand.name;
+                modalBrandDescription.textContent = brand.description[currentLanguage];
+                
+                modalProductsList.innerHTML = '';
+                brand.products.forEach(product => {
+                    const productItem = document.createElement('div');
+                    productItem.classList.add('modal-product-item');
+                    productItem.textContent = product[currentLanguage];
+                    modalProductsList.appendChild(productItem);
+                });
+
+                brandModal.style.display = 'block';
+            }
+        }
+
+        function closeBrandModal() {
+            brandModal.style.display = 'none';
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            if (event.target == brandModal) {
+                closeBrandModal();
+            }
+        }
+
+        // Search and filter functions
+        function searchProducts() {
+            const productType = document.getElementById('productType').value;
+            const brandFilter = document.getElementById('brandFilter').value;
+            const sortBy = document.getElementById('sortBy').value;
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const brandsGrid = document.getElementById('brandsGrid');
+
+            let filteredBrands = Object.values(brandData).filter(brand => {
+                const brandMatches = brandFilter === '' || brand.name.toLowerCase() === brandFilter;
+                const searchMatches = brand.products.some(product => 
+                    product.id.toLowerCase().includes(searchInput) || product.en.toLowerCase().includes(searchInput)
+                );
+                const typeMatches = productType === '' || brand.products.some(product => product.type === productType);
+
+                return brandMatches && searchMatches && typeMatches;
+            });
+
+            if (sortBy === 'name-asc') {
+                filteredBrands.sort((a, b) => a.name.localeCompare(b.name));
+            } else if (sortBy === 'name-desc') {
+                filteredBrands.sort((a, b) => b.name.localeCompare(a.name));
+            }
+            // Sorting by "popular" is not implemented as there's no popularity data. It will simply maintain the original order.
+
+            brandsGrid.innerHTML = '';
+
+            if (filteredBrands.length === 0) {
+                brandsGrid.innerHTML = `<p style="text-align: center; color: #64748b; font-size: 1.2rem;">Tidak ada produk yang ditemukan. (No products found.)</p>`;
+                return;
+            }
+
+            filteredBrands.forEach(brand => {
+                const brandCard = document.createElement('div');
+                brandCard.classList.add('brand-card');
+                brandCard.setAttribute('onclick', `openBrandModal('${brand.name.toLowerCase()}')`);
+
+                const brandProductsListText = brand.products.map(p => p[currentLanguage]).join(', ');
+                const brandProductsListEnText = brand.products.map(p => p.en).join(', ');
+
+                brandCard.innerHTML = `
+                    <div class="brand-logo"><i class="fas fa-car-battery"></i></div>
+                    <h3 class="brand-name">${brand.name}</h3>
+                    <p class="brand-description" data-en="${brand.description.en}" data-id="${brand.description.id}">${brand.description[currentLanguage]}</p>
+                    <div class="brand-products">
+                        <div class="brand-products-title" data-en="Available Products:" data-id="Produk Tersedia:">Produk Tersedia:</div>
+                        <div class="brand-products-list" data-en="${brandProductsListEnText}" data-id="${brandProductsListText}">${brandProductsListText}</div>
+                    </div>
+                `;
+                brandsGrid.appendChild(brandCard);
+            });
+        }
+    </script>
+</body>
+
+</html>
